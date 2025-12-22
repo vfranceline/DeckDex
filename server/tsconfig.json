@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    /* Configurações de Compilação */
+    "target": "es2020",                /* Gera JS compatível com Node.js recente */
+    "module": "commonjs",              /* O padrão que funciona com 'npm run dev' sem dor de cabeça */
+    "moduleResolution": "node",
+    "rootDir": "./src",                /* Onde está seu código TypeScript */
+    "outDir": "./dist",                /* Onde vai ficar o JS compilado (quando rodar build) */
+    
+    /* Interoperabilidade */
+    "esModuleInterop": true,           /* Permite importar pacotes CommonJS como se fossem ESModules */
+    "forceConsistentCasingInFileNames": true,
+
+    /* Checagem de Tipos (Segurança) */
+    "strict": true,                    /* Ativa todas as verificações estritas */
+    "skipLibCheck": true,              /* Pula verificação de arquivos de definição (.d.ts) para ganhar velocidade */
+    
+    /* Resolve o erro que você teve antes */
+    "verbatimModuleSyntax": false
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
