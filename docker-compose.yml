@@ -17,7 +17,11 @@ services:
       - DB_NAME=deckdex
     depends_on:
       - db
-    
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    command: npm run dev
+
   # serviço do bd PostgreSQL
   db:
     image: postgres:15-alpine
