@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # serviço da aplicação Node.js
+  server:
+    build: ./server
+    container_name: deckdex-server
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=deckdex
+    depends_on:
+      - db
+    
+  # serviço do bd PostgreSQL
+  db:
+    image: postgres:15-alpine
+    container_name: deckdex-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: deckdex
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
