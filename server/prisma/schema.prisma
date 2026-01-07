@@ -1,0 +1,71 @@
+// server/prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id            Int      @id @default(autoincrement())
+  email         String   @unique
+  passwordHash  String   @map("password_hash")
+  createdAt     DateTime @default(now()) @map("created_at")
+  
+  decks         Deck[]
+  collection    UserCollection[]
+
+  @@map("users")
+}
+
+model Card {
+  apiId     String   @id @map("api_id") @db.VarChar(50)
+  name      String   @db.VarChar(255)
+  imageUrl  String?  @map("image_url") @db.VarChar(500)
+  types     String?  @db.Text
+  supertype String?  @db.VarChar(50)
+  subtypes  String?  @db.Text
+  
+  deckCards DeckCard[]
+
+  @@map("cards")
+}
+
+model Deck {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @map("user_id")
+  name      String   @db.VarChar(150)
+  isPublic  Boolean  @default(false) @map("is_public")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cards     DeckCard[]
+
+  @@map("decks")
+}
+
+model DeckCard {
+  deckId    Int      @map("deck_id")
+  cardApiId String   @map("card_api_id") @db.VarChar(50)
+  quantity  Int      @default(1)
+
+  deck      Deck     @relation(fields: [deckId], references: [id], onDelete: Cascade)
+  card      Card     @relation(fields: [cardApiId], references: [apiId], onDelete: NoAction) // fk_card_cache
+
+  @@id([deckId, cardApiId])
+  @@map("deck_cards")
+}
+
+model UserCollection {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @map("user_id")
+  cardApiId String?  @map("card_api_id") @db.VarChar(50)
+  quantity  Int      @default(1)
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  // Nota: No seu SQL original, user_collection não tinha FK explícita para cards, apenas para users.
+
+  @@map("user_collection")
+}

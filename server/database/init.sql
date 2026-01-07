@@ -22,6 +22,7 @@ create table decks (
 	id SERIAL primary key,
 	user_id INTEGER not null,
 	name VARCHAR(150) not null,
+    is_public BOOLEAN default false,
 	created_at timestamp default CURRENT_TIMESTAMP,
 --	criando a relação usuario x deck
 	constraint fk_user
@@ -46,4 +47,17 @@ create table deck_cards (
     constraint fk_card_cache
         foreign key(card_api_id)
         references cards(api_id)
+);
+
+-- tabela de coleção de cartas do usuario
+create table user_collection (
+    id SERIAL primary key,
+    user_id INTEGER not null,
+    card_api_id VARCHAR(50),
+    quantity INTEGER default 1,
+
+    constraint fk_user
+        foreign key(user_id)
+        references users(id)
+        on delete cascade
 );
