@@ -1,0 +1,238 @@
+/* Reset e Base */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.app-container {
+  min-height: 100vh;
+  background-color: #0f0f0f; /* Fundo levemente mais escuro para contraste */
+  color: #e0e0e0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 2rem; 
+  background-color: rgba(30, 30, 30, 0.95); 
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #333;
+  position: sticky; top: 0; z-index: 100;
+}
+
+.logo {
+  font-family: 'Russo One', sans-serif;
+  font-size: 2rem;
+  color: #ffcb05;
+  text-shadow: 3px 3px 0px #2a4a80, -1px -1px 0 #2a4a80; 
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.logo:hover { transform: scale(1.05); }
+
+.nav-links { display: flex; gap: 1rem; align-items: center; }
+
+/* Botões */
+button { cursor: pointer; border: none; border-radius: 6px; font-weight: 600; transition: all 0.2s; font-family: inherit; }
+
+.btn-primary { 
+  background: linear-gradient(135deg, #400164 0%, #b33df7 100%);
+  color: white; padding: 0.7rem 1.4rem; 
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(52, 102, 175, 0.3); }
+
+.btn-text { background: none; color: #ccc; padding: 0.6rem 1.2rem; }
+.btn-text:hover { color: white; }
+
+.btn-outline { 
+  background: transparent; border: 1px solid #555; color: #fff; 
+  padding: 0.6rem 1rem; margin-top: 1.5rem; width: 100%; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;
+}
+.btn-outline:hover { border-color: #ffcb05; color: #ffcb05; background-color: rgba(255, 203, 5, 0.05); }
+
+.btn-link { background: none; color: #b33df7; margin-top: 1rem; text-align: right; width: 100%; }
+.btn-link:hover { text-decoration: underline; }
+
+/* Hero Section Melhorada */
+.hero-section {
+  padding: 5rem 1rem; text-align: center;
+  /* Degradê radial para dar foco no centro */
+  background: radial-gradient(circle at center, #400164 0%, #0f0f0f 100%);
+  border-bottom: 1px solid #222;
+}
+
+.hero-content h1 { 
+  font-size: 3.5rem; margin-bottom: 1rem; color: #fff; 
+  font-weight: 800; letter-spacing: -1px;
+  background: -webkit-linear-gradient(#fff, #aaa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-content p { color: #888; margin-bottom: 2.5rem; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+
+.search-bar-container {
+  display: flex; justify-content: center; gap: 0.5rem; max-width: 550px; margin: 0 auto;
+  position: relative;
+}
+.search-input {
+  flex: 1; padding: 1rem 1.2rem; border-radius: 8px; border: 1px solid #333;
+  background-color: #1a1a1a; color: white; font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-input:focus {
+  outline: none; border-color: #3466af;
+  box-shadow: 0 0 0 4px rgba(52, 102, 175, 0.2);
+}
+.btn-search { padding: 0 1.8rem; background-color: #333; color: white; border-radius: 8px; }
+.btn-search:hover { background-color: #444; }
+
+/* GRID PRINCIPAL */
+.section-container { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr; 
+  gap: 4rem;
+  align-items: start;
+}
+
+.section-title {
+  font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;
+  color: #666; margin-bottom: 1.5rem; font-weight: 700;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-title::after {
+  content: ""; flex: 1; height: 1px; background-color: #222;
+}
+
+/* ESQUERDA: Card of the Day */
+.card-day-container {
+  display: flex; gap: 2rem;
+  background: linear-gradient(145deg, #1a1a1a 0%, #151515 100%);
+  padding: 2rem; border-radius: 16px;
+  border: 1px solid #2a2a2a;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+}
+.card-day-container:hover { transform: translateY(-5px); border-color: #3466af; }
+
+.card-day-image-wrapper { position: relative; }
+.card-img {
+  width: 200px; height: auto; border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.card-day-details { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.card-day-details h3 { font-size: 2rem; margin: 0.5rem 0 1rem 0; color: #fff; font-weight: 700; }
+
+.rarity-badge { 
+  background: linear-gradient(90deg, #ffcb05, #f39c12); 
+  color: #000; font-size: 0.65rem; font-weight: 800;
+  padding: 4px 8px; border-radius: 4px; align-self: flex-start; text-transform: uppercase; letter-spacing: 0.5px;
+}
+
+.card-stats { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+.stat-pill {
+  background-color: #252525; padding: 0.5rem 1rem; border-radius: 8px;
+  display: flex; flex-direction: column;
+}
+.stat-pill small { color: #666; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 2px; }
+
+.flavor-text { font-style: italic; color: #888; font-size: 0.95rem; line-height: 1.5; border-left: 2px solid #333; padding-left: 1rem; }
+.type-text.dragon { color: #cfa346; } /* Cor Dourada para Dragão */
+
+/* DIREITA: Worthy Decks */
+.worthy-list { display: flex; flex-direction: column; gap: 1rem; }
+
+.worthy-card {
+  background-color: #161616; padding: 1.5rem; border-radius: 12px;
+  border: 1px solid #252525;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: all 0.2s; cursor: pointer;
+}
+.worthy-card:hover { 
+  background-color: #1a1a1a; border-color: #444; 
+  transform: translateX(5px);
+}
+
+.worthy-content { flex: 1; }
+.worthy-header { display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem; }
+.worthy-header h4 { font-size: 1.1rem; color: #fff; margin: 0; }
+
+.deck-desc { font-size: 0.85rem; color: #888; margin-bottom: 0.8rem; line-height: 1.4; max-width: 90%; }
+.user-credit { font-size: 0.8rem; color: #555; }
+.user-credit strong { color: #777; }
+
+.arrow-icon { color: #333; font-size: 1.5rem; transition: 0.2s; }
+.worthy-card:hover .arrow-icon { color: #b33df7; transform: translateX(5px); }
+
+/* Bolinhas de Tipos */
+.deck-types-mini { display: flex; gap: 4px; }
+.dot-type { width: 10px; height: 10px; border-radius: 50%; }
+.dot-type.water { background-color: #3498db; box-shadow: 0 0 5px #3498db; }
+.dot-type.lightning { background-color: #f1c40f; box-shadow: 0 0 5px #f1c40f; }
+.dot-type.fighting { background-color: #d35400; }
+
+/* Responsividade Mobile */
+@media (max-width: 850px) {
+  .content-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .card-day-container { flex-direction: column; align-items: center; text-align: center; }
+  .rarity-badge { align-self: center; }
+  .hero-content h1 { font-size: 2.5rem; }
+  .flavor-text { text-align: left; }
+}
+
+/* Footer (Atualizado com o que você pediu) */
+.footer {
+  margin-top: auto;
+  background: linear-gradient(180deg, #121212 0%, #2a0042 60%, #400164 100%);
+  border-top: 1px solid #2a2a2a;
+  padding: 4rem 2rem 2rem 2rem;
+  color: #e0e0e0;
+}
+
+.footer-content {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 4rem; margin-bottom: 3rem;
+}
+
+.footer-logo { font-family: 'Russo One'; font-size: 1.5rem; color: #fff; margin-bottom: 1rem; letter-spacing: 1px; }
+.footer-section p { font-size: 0.9rem; color: #bfaee3; line-height: 1.6; }
+
+.footer-section h4 {
+  font-size: 0.9rem; color: #fff; margin-bottom: 1.5rem;
+  text-transform: uppercase; letter-spacing: 1px; font-weight: 700;
+  border-left: 3px solid #ffcb05; padding-left: 12px;
+}
+
+.footer-section ul { list-style: none; }
+.footer-section ul li { margin-bottom: 0.8rem; }
+.footer-section ul li a { color: #bfaee3; text-decoration: none; transition: 0.2s; font-size: 0.9rem; }
+.footer-section ul li a:hover { color: #ffcb05; padding-left: 5px; }
+
+/* Perfil da Desenvolvedora */
+.dev-profile {
+  display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;
+  background-color: rgba(64, 1, 100, 0.3); /* Mais integrado ao fundo */
+  padding: 12px; border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background-color 0.2s;
+}
+.dev-profile:hover { background-color: rgba(64, 1, 100, 0.5); }
+
+.dev-avatar { width: 50px; height: 50px; border-radius: 50%; border: 2px solid #ffcb05; }
+.dev-name { color: #fff; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.2rem; }
+.dev-desc { font-size: 0.75rem !important; color: #dcd0f0 !important; }
+
+.social-links { margin-top: 1rem; display: flex; align-items: center; gap: 10px; }
+.social-links a { color: #ffcb05; font-size: 0.85rem; text-decoration: none; font-weight: 600; }
+.social-links a:hover { text-decoration: underline; color: #fff; }
+.separator { color: #666; font-size: 0.8rem; }
+
+.footer-bottom {
+  text-align: center; padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.8rem; color: #bfaee3; opacity: 0.7;
+}
