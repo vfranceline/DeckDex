@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { Home } from './pages/Home'; // Sua antiga Landing Page agora vive aqui
+import { Profile } from './pages/Profile';
 
 // Componente para proteger rotas (Opcional por enquanto)
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
@@ -23,12 +24,12 @@ function App() {
           <Route path="/register" element={<Register />} />
           
           {/* Exemplo: Se quiser uma rota protegida de Dashboard no futuro */}
-          <Route path="/dashboard" element={
+          <Route path="/profile" element={
             <PrivateRoute>
-              {/* Você pode criar uma pagina Dashboard.tsx depois ou reusar a Home */}
-              <Home /> 
+              <Profile />
             </PrivateRoute>
           } />
+
         </Routes>
       </BrowserRouter>
     </AuthProvider>

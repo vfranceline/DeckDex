@@ -46,15 +46,30 @@ export function Home() {
         <div className="nav-links">
           <button className='btn-primary'>Create Deck</button>
           
-          {/* Lógica do Botão de Login/Logout */}
           {user ? (
-            <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-              <span style={{ color: '#fff', fontSize: '0.9rem' }}>Olá, {user.username}</span>
-              <button className="btn-text" onClick={signOut}>Logout</button>
+            <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+                {/* Link para o Perfil */}
+                <span 
+                onClick={() => navigate('/profile')} 
+                style={{ 
+                    color: '#fff', 
+                    fontSize: '0.9rem', 
+                    cursor: 'pointer',
+                    fontWeight: 'bold',
+                    borderBottom: '1px solid transparent'
+                }}
+                onMouseOver={(e) => e.currentTarget.style.borderBottom = '1px solid #8257e5'}
+                onMouseOut={(e) => e.currentTarget.style.borderBottom = '1px solid transparent'}
+                >
+                Olá, {user.username}
+                </span>
+                
+                {/* Botão de Logout rápido (opcional, já tem no perfil) */}
+                <button className="btn-text" onClick={signOut}>Sair</button>
             </div>
-          ) : (
+            ) : (
             <button className="btn-text" onClick={() => navigate('/login')}>Login</button>
-          )}
+            )}
 
         </div>
       </nav>
