@@ -1,6 +1,8 @@
 -- tabela de usuarios
 create table users (
 	id SERIAL primary key,
+    name VARCHAR(255) not null,
+    username VARCHAR(255) unique not null,
 	email VARCHAR(255) unique not null,
 	password_hash VARCHAR(255) not null,
 	created_at timestamp default CURRENT_TIMESTAMP
