@@ -1,9 +1,9 @@
 -- 1. Inserir Usuários de teste
 -- Obs: Em produção, 'password_hash' deve ser um hash real (ex: bcrypt).
-INSERT INTO users (email, password_hash) VALUES 
-('ash@ketchum.com', 'hash_senha_secreta_123'),
-('misty@cerulean.com', 'hash_senha_agua_456'),
-('brock@pewter.com', 'hash_senha_pedra_789');
+INSERT INTO users (name, username, email, password_hash) VALUES 
+('ash', 'ketchupt', 'ash@ketchum.com', 'hash_senha_secreta_123'),
+('misty', 'mistiical','misty@cerulean.com', 'hash_senha_agua_456'),
+('brock', 'rockpaper','brock@pewter.com', 'hash_senha_pedra_789');
 
 -- 2. Inserir Cartas (Populando o cache)
 INSERT INTO cards (api_id, name, image_url, types, supertype, subtypes) VALUES 
