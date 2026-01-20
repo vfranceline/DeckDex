@@ -14,6 +14,7 @@ interface AuthContextData {
   isAuthenticated: boolean;
   signIn: (data: any) => Promise<void>; // TODO: tipar melhor depois
   signOut: () => void;
+  deleteAccount: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -54,8 +55,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(null);
   }
 
+  async function deleteAccount() {
+    try {
+      await api.delete('/users/profile');
+      signOut();
+    } catch (error) {
+      console.error("Erro ao deletar conta", error);
+      throw error;
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated: !!user, signIn, signOut }}>
+    <AuthContext.Provider value={{ user, isAuthenticated: !!user, signIn, signOut, deleteAccount }}>
       {children}
     </AuthContext.Provider>
   );

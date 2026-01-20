@@ -11,5 +11,6 @@ router.post('/auth/login', authController.login);
 
 // privadas
 router.get('/users/profile', authMiddleware, authController.getProfile);
+router.delete('/users/profile', authMiddleware, authController.deleteProfile);
 
 export { router };

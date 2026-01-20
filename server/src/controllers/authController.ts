@@ -124,4 +124,21 @@ export class AuthController {
             return res.status(500).json({ error: 'erro ao buscar perfil' });
         }
     }
+
+    // DELETE /users/profile
+    async deleteProfile(req: Request, res: Response){
+        try {
+            const userId = req.userId;
+
+            if(!userId) return res.status(401).json({ error: 'Usuário não autenticado' });
+
+            await prisma.user.delete({ where: {id: userId} });
+
+            return res.status(200).json({ message: 'Usuário deletado com sucesso' });
+
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ error: 'Erro ao excluir conta' });
+        }
+    }
 }
